@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const heading1 = React.createElement(
   "h1",
   {
@@ -13,7 +16,7 @@ const heading2 = React.createElement(
     id: "heading2",
     className: "heading2",
   },
-  "Namaste Everyone from React!"
+  "Namaste Everyone from React! from test"
 );
 
 const container = React.createElement(
