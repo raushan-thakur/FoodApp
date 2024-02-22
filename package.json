@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "This is a project",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "repository": {
@@ -12,6 +14,8 @@
   "author": "Raushan Thakur",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "parcel": "^2.11.0",
     "process": "^0.11.10"
   },
@@ -19,8 +23,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-
-  "browserslist":[
+  "browserslist": [
     "last 4 versions"
   ]
 }

@@ -10,24 +10,24 @@ const heading1 = React.createElement(
   "Namaste Everyone from React!"
 );
 
-const heading2 = React.createElement(
-  "h2",
-  {
-    id: "heading2",
-    className: "heading2",
-  },
-  "Namaste Everyone from React! from test"
-);
+const Title = () => <h1 className="heading1">Namaste Everyone From JSX</h1>;
 
-const container = React.createElement(
-  "div",
-  {
-    id: "container",
-    className: "heading1",
-  },
-  [heading1, heading2]
+//Functional Component
+
+const HeaderComponent = () => (
+  <div>
+    {heading1}
+    {Title()}
+    <Title />
+    
+    {/* { 1 + 4 }
+    { console.log(10)} */}
+
+    <h1 className="heading1">Namste React from Functional Component</h1>
+    <h2>This is Heading 2 inside Functional Component</h2>
+  </div>
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(container);
+root.render(<HeaderComponent />);
