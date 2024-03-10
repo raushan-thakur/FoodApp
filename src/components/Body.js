@@ -3,12 +3,8 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-function filterData(searchInput, restaurants) {
-  return restaurants.filter((rest) =>
-    rest?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
-  );
-}
+import { filterData } from "../utils/helper";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
@@ -34,9 +30,15 @@ const Body = () => {
     );
   }
 
-  console.log("render");
+  //console.log("render");
 
-  if (!allRestaurants) return null;
+  const isOnline = useOnline();
+
+  if (!isOnline) {
+    return <h1>Offline, Please Check Your Internet Connections !!! </h1>;
+  }
+
+  if (!allRestaurants) return null; //Early Return
 
   //if(filteredRestaurants.length === 0 ) return  (<h1>NO Restaurants Matches Your Filter</h1>);
 
@@ -70,7 +72,7 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurants.map((rest) => {
           return (
-            <Link to={"/restaurant/" + rest.info.id }  key={rest.info.id} >
+            <Link to={"/restaurant/" + rest.info.id} key={rest.info.id}>
               <RestaurantCard {...rest.info} />
             </Link>
           );

@@ -2,37 +2,18 @@ import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { IMG_CDN_URL } from "../constants";
 import Shimmer from "./Shimmer";
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
-  const params = useParams();
-  const resId = params?.id;
-  const [restaurant, setRestaurant] = useState(null);
-  const [restaurantMenu, setRestaurantMenu] = useState(null);
-
-  useEffect(() => {
-    getRestaurantInfo();
-  }, []);
-
-  async function getRestaurantInfo() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7494933&lng=77.11836120000001&restaurantId=" +
-        resId
-    );
-
-    const json = await data.json();
-    console.log(json);
-    setRestaurant(json?.data?.cards[0]?.card?.card?.info);
-    setRestaurantMenu(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-        ?.card?.itemCards
-    );
-  }
+  const { resId } = useParams();
+  // const resId = params?.id;
+  const {restaurant, restaurantMenu}  = useRestaurant(resId);
 
   return !restaurant ? (
     <Shimmer />
   ) : (
     <div className="menuc">
-      <div>
+      <div className="menu-left">
         RestaurantMenu
         <h1>Restaurant id : {resId}</h1>
         <h2>{restaurant?.name}</h2>
@@ -47,12 +28,26 @@ const RestaurantMenu = () => {
         <h3>⭐️ {restaurant?.avgRating} Stars</h3>
       </div>
 
-      <div>
+      <div className="">
         <h1>Menu</h1>
         <div>
           <p>
             {restaurantMenu?.map((item, index) => (
-              <li key={item.card.info.id}>{item?.card?.info?.name}</li>
+              <li key={item.card.info.id}>
+                <div className="listm">
+                  <img
+                    className="image-card"
+                    src={IMG_CDN_URL + item?.card?.info?.imageId}
+                    alt="image"
+                  />
+                  <div className="right-menu">
+                    <div>
+                      {item?.card?.info?.name} - ₹{item?.card?.info?.price / 100}
+                    </div>
+                    <div>{item?.card?.info?.description}</div>
+                  </div>
+                </div>
+              </li>
             ))}
           </p>
         </div>

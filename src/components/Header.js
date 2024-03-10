@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "./Assets/img/Logo.jpeg";
+import Logo from "../Assets/img/Logo.jpeg";
+import useOnline from "../utils/useOnline";
 
 const Title = () => {
   return (
     <a href="/">
-      <img className="logo" src={Logo} alt="logo" />
+      <img className="h-20" src={Logo} alt="logo" />
     </a>
   );
 };
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const isOnline = useOnline();
   return (
-    <div className="header">
+    <div className="flex">
       <Title />
 
       {/* <div>
@@ -30,8 +32,8 @@ const Header = () => {
         <button className="log-btn">Search</button>
       </div> */}
 
-      <div className="nav-items">
-        <ul>
+      <div className="">
+        <ul className="flex">
           <Link to="/">
             <li>Home</li>
           </Link>
@@ -42,6 +44,11 @@ const Header = () => {
             <li>Contact</li>
           </Link>
           <li>Cart</li>
+
+          <Link to="/instamart">
+            <li>Instamart</li>
+          </Link>
+          <li>{isOnline ? "✅" : "🔴"}</li>
           <li>
             {isLoggedIn ? (
               <button
