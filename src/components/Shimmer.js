@@ -1,10 +1,12 @@
 const Shimmer = () => {
   return (
-    <div className="restaurant-list">
-      {Array(10)
+    <div className="flex flex-wrap justify-center">
+      {Array(20)
         .fill("")
         .map((e, index) => (
-          <div key={index} className="Shimmer-card"
+          <div
+            key={index}
+            className="w-48 h-72 p-4 m-4 bg-gray-200  rounded-lg"
           ></div>
         ))}
     </div>

@@ -20,10 +20,11 @@ const Profile = (props) => {
   return (
     <div>
       <h1> Profile Component</h1>
-      <h3>Name : {props.name}</h3>
+      <h3>Name : Raushan {props.name}</h3>
       <h3>Count : {count}</h3>
       <h3>Count : {count2}</h3>
       <button
+        className="bg-slate-500 text-white m-2 p-2 rounded-lg "
         onClick={() => {
           if (count == 0) {
             setCount(1);

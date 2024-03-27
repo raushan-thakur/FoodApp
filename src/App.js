@@ -9,6 +9,11 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
+import { useState } from "react";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/cart";
 
 // const heading1 = React.createElement(
 //   "h1",
@@ -25,12 +30,18 @@ const About = lazy(() => import("./components/About"));
 const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Raushan Thakur",
+    email: "raushandtu@gmail.com",
+  });
   return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user, setUser: setUser }}>
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -47,7 +58,7 @@ const AppRouter = createBrowserRouter([
       {
         path: "/about",
         element: (
-          <Suspense fallback ={<h1>Loading...</h1>}>
+          <Suspense fallback={<h1>Loading...</h1>}>
             <About />
           </Suspense>
         ),
@@ -69,10 +80,14 @@ const AppRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: (
-          <Suspense fallback={<Shimmer/>}>
+          <Suspense fallback={<Shimmer />}>
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },
