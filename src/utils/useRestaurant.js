@@ -15,13 +15,13 @@ const useRestaurant = (resId) => {
 
     const json = await data.json();
     console.log(json);
-    setRestaurant(json?.data?.cards[0]?.card?.card?.info);
+    setRestaurant(json?.data?.cards[2]?.card?.card?.info);
     setRestaurantMenu(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
+      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card
         ?.card?.itemCards
     );
     setRestaurantMenu2(
-      json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+      json?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
         ?.card?.itemCards
     );
   }
