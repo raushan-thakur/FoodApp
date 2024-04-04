@@ -11,11 +11,7 @@ const useRestaurant = (resId) => {
   }, []);
 
   async function getRestaurantInfo() {
-    const data = await fetch(FETCH_MENU_URL + resId, {
-      headers: {
-      'x-cors-api-key': 'temp_b722fb498d04c59c70b85ba72de25333'
-      }
-    });
+    const data = await fetch(FETCH_MENU_URL + resId);
 
     const json = await data.json();
     console.log(json);
