@@ -19,7 +19,7 @@ const Body = () => {
 
   async function getRestaurant() {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7494933&lng=77.11836120000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://cors-handlers.vercel.app/api/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7494933&lng=77.11836120000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
     const json = await data.json();
     // console.log(json);
